@@ -1,4 +1,4 @@
-package com.telusko.eshop;
+package com.telusko.eshop.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
