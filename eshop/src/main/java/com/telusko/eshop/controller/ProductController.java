@@ -1,7 +1,11 @@
 package com.telusko.eshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,5 +21,15 @@ public class ProductController {
     @RequestMapping("/products")
     public List<Product> getProducts(){
         return productService.getProducts();
+    }
+
+    @GetMapping("/products/{prodId}")
+    public Product getProductById(@PathVariable int prodId){
+        return productService.getProductById(prodId);
+    }
+
+    @PostMapping("/products")
+    public String addProduct(@RequestBody Product product){
+        return productService.addProduct(product) ? "Product added successfully" : "Product not added";
     }
 }
