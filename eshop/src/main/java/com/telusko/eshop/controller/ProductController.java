@@ -1,10 +1,12 @@
 package com.telusko.eshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +33,16 @@ public class ProductController {
     @PostMapping("/products")
     public String addProduct(@RequestBody Product product){
         return productService.addProduct(product) ? "Product added successfully" : "Product not added";
+    }
+
+    @PutMapping("/products/{prodId}")
+    public String updateProduct(@PathVariable int prodId, @RequestBody Product product){
+        
+        return productService.updateProduct(prodId, product);
+    }
+
+    @DeleteMapping("/products/{prodId}")
+    public String deleteProduct(@PathVariable int prodId){
+        return productService.deleteProduct(prodId);
     }
 }

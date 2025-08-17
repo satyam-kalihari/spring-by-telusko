@@ -33,4 +33,34 @@ public class ProductService {
         return false;
        }
     }
+
+    private int getIndex(int prodId){
+        int index = -1;
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getProdId() == prodId) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public String updateProduct(int prodId, Product product) {
+        
+        int index = getIndex(prodId);
+        if (index == -1) {
+            return "Product not found";
+        }
+        products.set(index, product);
+        return "Product updated successfully";
+    }
+
+    public String deleteProduct(int prodId){
+        int index = getIndex(prodId);
+        if(index == -1){
+            return "Product not found";
+        }
+        products.remove(index);
+        return "Product deleted successfully";
+    }
 }
