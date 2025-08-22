@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +24,17 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private String imageUrl;
+    // private String imageUrl;
     private String brand;
     private String category;
     private Date releaseDate;
     private int quantity;
-    private boolean available;
+    private boolean productAvailable;
+
+    private String imageName;
+    private String imageType;
+    
+    @Lob
+    private byte[] imageData;
 
 }
