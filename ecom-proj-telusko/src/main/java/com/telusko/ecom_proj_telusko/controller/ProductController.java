@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,6 +82,13 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@PathVariable int id){
         service.deleteProduct(id);
         return new ResponseEntity<>("Product deleted", HttpStatus.OK);
+    }
+
+    // FOR SEARCH FILTER
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchProduct(@RequestParam String keyword){
+        List<Product> products = service.searchProduct(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
     
 }
