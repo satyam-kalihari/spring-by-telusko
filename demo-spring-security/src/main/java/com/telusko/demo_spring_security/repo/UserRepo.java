@@ -8,4 +8,6 @@ import com.telusko.demo_spring_security.model.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {
 
+    User findByUsername(String username);
+
 }

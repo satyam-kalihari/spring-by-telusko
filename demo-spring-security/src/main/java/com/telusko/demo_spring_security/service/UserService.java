@@ -3,6 +3,7 @@ package com.telusko.demo_spring_security.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.telusko.demo_spring_security.model.User;
@@ -19,7 +20,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
     public User addUser(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
