@@ -25,13 +25,17 @@ public class UserController {
 
     @GetMapping("/")
     public List<User> getAllUsers() {
-        System.out.println("user controller is working");
         return service.getAllUsers();
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     public User addUser(@RequestBody User user ){
         return service.addUser(user);
+    }
+
+    @PostMapping("/login")
+    public String verifyUser(@RequestBody User user){
+        return service.verify(user);
     }
 
     @GetMapping("/csrf-token")
